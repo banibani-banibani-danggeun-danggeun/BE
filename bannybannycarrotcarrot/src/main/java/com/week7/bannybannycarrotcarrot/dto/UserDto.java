@@ -12,7 +12,7 @@ public class UserDto {
 
     public record SignupRequestDto(@NotBlank(message = "아이디가 입력되지 않았습니다.")
                                    @Size(min = 5, max = 10, message = "아이디는 5자 이상 10자 이하만 가능합니다.")
-                                   @Pattern (regexp="^(?=.*?[0-9])(?=.*?[a-z])$", message = "아이디는 소문자 영문, 숫자로를 필수로 포함하여야 합니다.")
+                                   @Pattern (regexp="^(?=.*?[0-9])(?=.*?[a-z]).{5,10}$", message = "아이디는 소문자 영문, 숫자로를 필수로 포함하여야 합니다.")
                                    String username,
 
                                    @Size(min = 8, max = 15)
