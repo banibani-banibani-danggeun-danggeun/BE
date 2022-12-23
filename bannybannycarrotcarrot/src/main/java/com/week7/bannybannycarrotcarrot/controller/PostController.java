@@ -17,7 +17,7 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping("/post")//모름저는 접속한유저가 널임 근데토큰은나오는데요 로그인할때
+    @PostMapping("/post")
     public MsgDto.ResponseDto post(@RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return postService.post(requestDto, userDetails.getUser());
     }
