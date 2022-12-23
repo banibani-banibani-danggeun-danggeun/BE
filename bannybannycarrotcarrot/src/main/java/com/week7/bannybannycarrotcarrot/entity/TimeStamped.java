@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class TimeStamped {
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column
     private LocalDateTime createAt;
 
     @LastModifiedDate
