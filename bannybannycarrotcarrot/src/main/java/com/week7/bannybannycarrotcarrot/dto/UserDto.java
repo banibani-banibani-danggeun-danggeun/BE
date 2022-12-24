@@ -18,9 +18,6 @@ public class UserDto {
                                    @Size(min = 8, max = 15)
                                    @Pattern (regexp="^.(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 대소문자 영문, 특수문자를 필수로 포함하여야 합니다.")
                                    @NotBlank(message = "비밀번호가 입력되지 않았습니다.") String password,
-
-                                   @Size(min = 8, max = 15)
-                                   @Pattern (regexp="^.(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 대소문자 영문, 특수문자를 필수로 포함하여야 합니다.")
                                    @NotBlank(message = "비밀번호 확인(이)가 입력되지 않았습니다.") String passwordCheck) {
         public User toEntity() {
             return new User(this.username, this.password);
