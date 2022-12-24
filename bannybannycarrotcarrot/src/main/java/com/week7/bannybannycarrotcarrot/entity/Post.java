@@ -41,4 +41,12 @@ public class Post extends TimeStamped{
         this.location = requestDto.location();
         this.username = username;
     }
+
+    public void update(PostDto.PostRequestDto requestDto) {
+        this.title = requestDto.title();
+        this.content = requestDto.content();
+        this.image = requestDto.image();
+        this.price = requestDto.price();
+        this.location = requestDto.location();
+    }
 }
