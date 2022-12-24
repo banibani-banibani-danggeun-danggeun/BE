@@ -7,6 +7,7 @@ import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -36,6 +37,7 @@ public class WebSecurityConfig {
                 // antMatchers -> requestMatchers 로 변경 (version 3.0.0 에서는 이렇게 사용)
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/api/user/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/post/**").permitAll()
                         .anyRequest().authenticated());
         http
                 .logout()
