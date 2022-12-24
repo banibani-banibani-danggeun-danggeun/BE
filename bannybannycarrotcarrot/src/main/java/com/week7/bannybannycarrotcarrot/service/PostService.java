@@ -5,6 +5,7 @@ import com.week7.bannybannycarrotcarrot.dto.PostDto;
 import com.week7.bannybannycarrotcarrot.entity.Post;
 import com.week7.bannybannycarrotcarrot.entity.User;
 import com.week7.bannybannycarrotcarrot.repository.PostRepository;
+import com.week7.bannybannycarrotcarrot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,14 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    private final UserRepository userRepository;
 
     @Transactional
-    public MsgDto.ResponseDto post(PostDto.PostRequestDto requestDto, User user) {
+    public MsgDto.ResponseDto post(PostDto.PostRequestDto requestDto, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("회원을 찾을 수 없습니다.")
+        );
+
         Post post = new Post(requestDto, user.getUsername());
         System.out.println("-------------------------------------");
         postRepository.save(post);
