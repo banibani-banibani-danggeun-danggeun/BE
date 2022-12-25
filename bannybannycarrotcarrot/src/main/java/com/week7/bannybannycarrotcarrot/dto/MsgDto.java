@@ -1,7 +1,10 @@
 package com.week7.bannybannycarrotcarrot.dto;
 
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
 public class MsgDto {
 
 

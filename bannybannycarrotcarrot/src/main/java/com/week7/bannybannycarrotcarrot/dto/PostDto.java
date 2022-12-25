@@ -1,7 +1,9 @@
 package com.week7.bannybannycarrotcarrot.dto;
 
 import com.week7.bannybannycarrotcarrot.entity.Post;
+import lombok.Setter;
 
+@Setter
 public class PostDto {
 
     public record PostRequestDto(String title,
