@@ -24,7 +24,6 @@ public class PostController {
     //작성
     @PostMapping("")
     public ResponseEntity<?> post(@RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
-        log.info(userDetails.getUsername());
         return postService.post(requestDto, Long.parseLong(userDetails.getUsername()));
     }
     //전체조회
@@ -39,7 +38,7 @@ public class PostController {
     }
 
     @PatchMapping("/{postId}")
-    public ResponseEntity<?> updatePost(@PathVariable Long postId, @RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
+    public MsgDto.DataResponseDto updatePost(@PathVariable Long postId, @RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
         return postService.updatePost(postId, requestDto, Long.parseLong(userDetails.getUsername()));
     }
 

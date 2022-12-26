@@ -2,7 +2,6 @@ package com.week7.bannybannycarrotcarrot.controller;
 
 import com.week7.bannybannycarrotcarrot.dto.MsgDto;
 import com.week7.bannybannycarrotcarrot.dto.UserDto;
-import com.week7.bannybannycarrotcarrot.entity.User;
 import com.week7.bannybannycarrotcarrot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +28,7 @@ public class UserController {
 
     @GetMapping("idcheck/{username}")
     public MsgDto.ResponseDto idCheck(@PathVariable String username) {
+
         return userService.idCheck(username);
     }
 }
