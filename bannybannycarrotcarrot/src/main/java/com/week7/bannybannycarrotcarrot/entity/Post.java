@@ -30,16 +30,16 @@ public class Post extends TimeStamped{
     private String location;
 
     @Column
-    private String username;
+    private String nickname;
 
 
-    public Post(PostDto.PostRequestDto requestDto, String username) {
+    public Post(PostDto.PostRequestDto requestDto, String nickname) {
         this.title = requestDto.title();
         this.content = requestDto.content();
         this.image = requestDto.image();
         this.price = requestDto.price();
         this.location = requestDto.location();
-        this.username = username;
+        this.nickname = nickname;
     }
 
     public void update(PostDto.PostRequestDto requestDto) {

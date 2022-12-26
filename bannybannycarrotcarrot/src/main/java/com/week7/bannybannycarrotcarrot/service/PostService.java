@@ -25,15 +25,16 @@ public class PostService {
     private final UserRepository userRepository;
 
     @Transactional
-    public MsgDto.ResponseDto post(PostDto.PostRequestDto requestDto, Long userId) {
+    public ResponseEntity<?> post(PostDto.PostRequestDto requestDto, Long userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("회원을 찾을 수 없습니다.")
         );
 
-        Post post = new Post(requestDto, user.getUsername());
+        Post post = new Post(requestDto, user.getNickname());
         System.out.println("-------------------------------------");
         postRepository.save(post);
-        return new MsgDto.ResponseDto("게시글작성", HttpStatus.OK.value());
+//        return new MsgDto.ResponseDto("게시글작성", HttpStatus.OK.value());
+        return ResponseEntity.ok(new MsgDto.DataResponseDto("게시글 작성 완료", HttpStatus.OK.value(), new PostDto.PostResponseDto(post)));
     }
 
 
@@ -59,7 +60,7 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
         );
-        if(!post.getUsername().equals(user.getUsername())){
+        if(!post.getNickname().equals(user.getNickname())){
             return ResponseEntity.ok(new MsgDto.ResponseDto("작성자만 수정할 수 있습니다.", HttpStatus.BAD_REQUEST.value()));
         }
         post.update(requestDto);
@@ -74,7 +75,7 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
         );
-        if(!post.getUsername().equals(user.getUsername())){
+        if(!post.getNickname().equals(user.getNickname())){
             return new MsgDto.ResponseDto("작성자만 삭제할 수 있습니다.", HttpStatus.BAD_REQUEST.value());
         }
         postRepository.deleteById(postId);

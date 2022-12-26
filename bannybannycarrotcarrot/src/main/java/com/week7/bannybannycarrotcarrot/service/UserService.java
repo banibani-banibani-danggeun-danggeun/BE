@@ -33,11 +33,14 @@ public class UserService {
         if(userRepository.existsByUsername(requestDto.username()))
             return new MsgDto.ResponseDto("이미 존재하는 아이디입니다.", HttpStatus.BAD_REQUEST.value());
 
+        if(userRepository.existsByNickname(requestDto.nickname()))
+            return new MsgDto.ResponseDto("이미 존재하는 닉네임입니다.", HttpStatus.BAD_REQUEST.value());
+
 
         if (!Objects.equals(requestDto.passwordCheck(), requestDto.password()))
             return new MsgDto.ResponseDto("비밀번호 확인란과 비밀번호란이 일치하지 않습니다.", HttpStatus.BAD_REQUEST.value());
         password = passwordEncoder.encode(requestDto.password());
-        userRepository.save(new User(requestDto.username(), password));
+        userRepository.save(new User(requestDto.username(), password, requestDto.nickname()));
         return new MsgDto.ResponseDto("회원가입 되었습니다.", HttpStatus.OK.value());
     }
 
