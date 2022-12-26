@@ -15,6 +15,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -43,11 +45,21 @@ public class KakaoService {
         // 3. 필요시에 회원가입
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
 
+        UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(kakaoUserInfo.getEmail(),"");
+
+        //인증 완료된 인증 객체
+//        Authentication afterAuthentication = authenticationManagerBuilder.getObject().authenticate(beforeAuthentication);
+        String generateToken = jwtUtil.generateToken(beforeAuthentication);
+        //인증 완료된 객체로 JWT 생성
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, generateToken);
+
+
+
         // 4. JWT 토큰 반환
-        String createToken =  jwtUtil.createToken(kakaoUser.getUsername());
+//        String createToken =  jwtUtil.generateToken(kakaoUser.getUsername());
 //        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
-        return createToken;
+        return generateToken;
     }
 
     // 1. "인가 코드"로 "액세스 토큰" 요청
@@ -59,7 +71,7 @@ public class KakaoService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
-        body.add("client_id", "2d222374ea7c2147f3ce81dc8690c7e0");
+        body.add("client_id", "d6c5b10cf544ae8fcc0cbb0bbc530328");
         body.add("redirect_uri", "http://localhost:8080/api/user/kakao/callback");
         body.add("code", code);
 
