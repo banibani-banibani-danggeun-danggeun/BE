@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.InvalidCookieException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Date;
@@ -38,9 +39,9 @@ public class JwtUtil {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String extractToken(String bearerToken){
+    public String extractToken(String bearerToken) {
 
-        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtUtil.TOKEN_PREFIX)){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtUtil.TOKEN_PREFIX)) {
             return bearerToken.substring(7);
         }
 
@@ -58,12 +59,13 @@ public class JwtUtil {
 
         //Access Token 생성
 
-        return Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim(AUTHORITY_KEY, authorities)
-                .setExpiration(accessTokenExpiresIn)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .compact();
+        return TOKEN_PREFIX +
+                Jwts.builder()
+                        .setSubject(authentication.getName())
+                        .claim(AUTHORITY_KEY, authorities)
+                        .setExpiration(accessTokenExpiresIn)
+                        .signWith(key, SignatureAlgorithm.HS512)
+                        .compact();
     }
 
     public Authentication getAuthentication(String accessToken) {

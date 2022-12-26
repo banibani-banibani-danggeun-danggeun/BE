@@ -31,7 +31,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public void signup(UserDto.SignupRequestDto requestDto) {
+    public MsgDto.ResponseDto signup(UserDto.SignupRequestDto requestDto) {
         String password = "";
 
         if(userRepository.existsByUsername(requestDto.username()))
@@ -39,10 +39,11 @@ public class UserService {
 
 
         if (!Objects.equals(requestDto.passwordCheck(), requestDto.password()))
-            throw new RestApiException(UserStatusCode.OVERLAPPED_USERNAME);
-//            return new MsgDto.ResponseDto("비밀번호 확인란과 비밀번호란이 일치하지 않습니다.", HttpStatus.BAD_REQUEST.value());
+            throw new RestApiException(UserStatusCode.PASSWORD_CHECK);
+
         password = passwordEncoder.encode(requestDto.password());
         userRepository.save(new User(requestDto.username(), password));
+        return new MsgDto.ResponseDto(UserStatusCode.USER_SIGNUP_SUCCESS);
 
     }
 
@@ -56,24 +57,22 @@ public class UserService {
         //인증 완료된 객체로 JWT 생성
         httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.generateToken(afterAuthentication));
 
-        return new MsgDto.ResponseDto("로그인 되었습니다.", HttpStatus.OK.value());
+        return new MsgDto.ResponseDto(UserStatusCode.USER_LOGIN_SUCCESS);
     }
 
     public MsgDto.ResponseDto idCheck(String username) {
         if (userRepository.existsByUsername(username)) {
             throw  new RestApiException(UserStatusCode.OVERLAPPED_USERNAME);
         }
-        //아이디
-        if (Pattern.matches("^[a-z0-9]*$",username)){
-            if(username.length() < 8 || username.length() > 15){
-                throw new RestApiException(UserStatusCode)
+        //아이디유효성검사
+        if (Pattern.matches("^.(?=.*\\d)(?=.*[a-z]).*$",username)){
+            if(username.length() < 5 || username.length() > 10){
+                throw new RestApiException(UserStatusCode.WRONG_USERNAME_SIZE);
             }
+
         } else {
-            throw new RestApiException()
+            throw new RestApiException(UserStatusCode.WRONG_USERNAME_PATTERN2);
         }
-
-
-
-        return new MsgDto.ResponseDto("사용 가능한 아이디입니다.", HttpStatus.OK.value());
+        return new MsgDto.ResponseDto(UserStatusCode.AVAILABLE_USERNAME);
     }
 }
