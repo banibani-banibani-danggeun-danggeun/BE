@@ -38,6 +38,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/api/user/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/post/**").permitAll()
+                        .antMatchers("/oauth2/**").permitAll()
                         .anyRequest().authenticated());
         http
                 .logout()
