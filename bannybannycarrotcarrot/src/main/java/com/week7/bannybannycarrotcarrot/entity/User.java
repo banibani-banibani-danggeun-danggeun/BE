@@ -49,6 +49,7 @@ public class User extends TimeStamped{
         this.kakaoId = kakaoId;
         this.password = password;
         this.email = email;
+        this.nickname = username;
     }
 
     public User kakaoIdUpdate(Long kakaoId) {
