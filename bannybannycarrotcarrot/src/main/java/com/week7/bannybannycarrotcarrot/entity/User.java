@@ -44,12 +44,13 @@ public class User extends TimeStamped{
 
 
     // kakao OAuth 를 위해 추가 -종열
-    public User(String username, Long kakaoId, String password, String email) {
+    public User(String username, Long kakaoId, String password, String email, UserRole userRole) {
         this.username = username;
         this.kakaoId = kakaoId;
         this.password = password;
         this.email = email;
         this.nickname = username;
+        this.userRole = UserRole.USER;
     }
 
     public User kakaoIdUpdate(Long kakaoId) {
