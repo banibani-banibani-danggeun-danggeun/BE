@@ -1,6 +1,7 @@
 package com.week7.bannybannycarrotcarrot.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.week7.bannybannycarrotcarrot.oauth2.PrincipalOauth2UserService;
 import com.week7.bannybannycarrotcarrot.security.exceptionhandler.CustomAccessDeniedHandler;
 import com.week7.bannybannycarrotcarrot.security.exceptionhandler.CustomAuthenticationEntryPoint;
 import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
@@ -28,6 +29,8 @@ public class WebSecurityConfig {
     private final JwtUtil jwtUtil;
     private final ObjectMapper om;
 
+    private final PrincipalOauth2UserService principalOauth2UserService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -36,10 +39,13 @@ public class WebSecurityConfig {
         http
                 // antMatchers -> requestMatchers 로 변경 (version 3.0.0 에서는 이렇게 사용)
                 .authorizeHttpRequests(auth -> auth
+                        .antMatchers("/**").permitAll()
                         .antMatchers("/api/user/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/post/**").permitAll()
                         .antMatchers("/oauth2/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated()
+                );
+
         http
                 .logout()
                 .logoutUrl("/api/user/logout")
@@ -61,6 +67,7 @@ public class WebSecurityConfig {
                 .frameOptions()
                 .disable()
 
+
                 .and()
                 .cors()
 
@@ -71,11 +78,17 @@ public class WebSecurityConfig {
                 .and()
                 .apply(new JwtConfig(jwtUtil, om));
 
+        http
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
+
+
         return http.build();
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
+    public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
 
@@ -99,17 +112,14 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public CustomAccessDeniedHandler customAccessDeniedHandler(){
+    public CustomAccessDeniedHandler customAccessDeniedHandler() {
         return new CustomAccessDeniedHandler(om);
     }
 
     @Bean
-    public CustomAuthenticationEntryPoint customAuthenticationEntryPoint(){
+    public CustomAuthenticationEntryPoint customAuthenticationEntryPoint() {
         return new CustomAuthenticationEntryPoint(om);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+
 }

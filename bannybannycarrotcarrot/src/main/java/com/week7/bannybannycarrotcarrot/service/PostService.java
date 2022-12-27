@@ -32,7 +32,7 @@ public class PostService {
                 () -> new RestApiException(CommonStatusCode.NOT_FIND_USER)
         );
 
-        Post post = new Post(requestDto, user.getUsername());
+        Post post = new Post(requestDto, user.getNickname());
         System.out.println("-------------------------------------");
         postRepository.save(post);
         return new MsgDto.ResponseDto(PostStatusCode.CREATE_POST);
@@ -61,7 +61,7 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(CommonStatusCode.NOT_FIND_POST)
         );
-        if(!post.getUsername().equals(user.getUsername())){
+        if(!post.getNickname().equals(user.getNickname())){
             throw new RestApiException(PostStatusCode.INVALID_USER_UPDATE);
         }
         post.update(requestDto);
@@ -76,7 +76,7 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(CommonStatusCode.NOT_FIND_POST)
         );
-        if(!post.getUsername().equals(user.getUsername())){
+        if(!post.getNickname().equals(user.getNickname())){
             throw new RestApiException(PostStatusCode.INVALID_USER_DELETE);
         }
         postRepository.deleteById(postId);
