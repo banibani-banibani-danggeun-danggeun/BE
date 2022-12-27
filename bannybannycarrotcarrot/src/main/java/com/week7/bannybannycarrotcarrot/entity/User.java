@@ -15,25 +15,31 @@ public class User extends TimeStamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column
     private UserRole userRole;
 
+
     private Long kakaoId;  // kakao OAuth 를 위해 추가 -종열
 
     private String email;
 
+    @Column(nullable = false)
+    private  String nickname;
+
+
     @Builder
-    public User(String username, String password) {
+    public User(String username, String password, String nickname) {
         this.username = username;
         this.password = password;
         this.userRole = UserRole.USER;
+        this.nickname = nickname;
     }
 
 

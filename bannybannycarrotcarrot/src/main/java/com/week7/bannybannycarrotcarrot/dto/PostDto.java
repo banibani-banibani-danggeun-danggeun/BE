@@ -20,10 +20,11 @@ public class PostDto {
             String content,
             String image,
             int price,
-            String location) {
+            String location,
+            String nickname) {
         public PostResponseDto(Post post) {
                 this(post.getId(), post.getTitle(), post.getContent(), post.getImage(),
-                    post.getPrice(), post.getLocation());
+                    post.getPrice(), post.getLocation(),post.getNickname());
         }
 
     }

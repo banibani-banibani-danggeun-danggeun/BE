@@ -34,6 +34,7 @@ public class UserController {
 
     @GetMapping("idcheck/{username}")
     public MsgDto.ResponseDto idCheck(@PathVariable String username) {
+
         return userService.idCheck(username);
     }
 
