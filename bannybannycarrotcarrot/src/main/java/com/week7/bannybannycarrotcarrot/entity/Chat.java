@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Chat extends TimeStamped {
+public class Chat extends TimeStamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long chatId;
+    private Long id;
 
     @Column(nullable = false)
     private ChatMessage.MessageType type; // 메시지 타입

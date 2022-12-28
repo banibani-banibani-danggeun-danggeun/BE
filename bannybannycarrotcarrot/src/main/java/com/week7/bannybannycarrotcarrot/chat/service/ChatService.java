@@ -3,7 +3,7 @@ package com.week7.bannybannycarrotcarrot.chat.service;
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatDto;
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatMessage;
 import com.week7.bannybannycarrotcarrot.entity.Chat;
-import com.week7.bannybannycarrotcarrot.chat.repository.ChatRepository;
+import com.week7.bannybannycarrotcarrot.repository.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

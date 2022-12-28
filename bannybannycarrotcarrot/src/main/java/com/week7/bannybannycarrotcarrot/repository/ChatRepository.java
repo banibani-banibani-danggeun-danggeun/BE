@@ -1,4 +1,4 @@
-package com.week7.bannybannycarrotcarrot.chat.repository;
+package com.week7.bannybannycarrotcarrot.repository;
 
 import com.week7.bannybannycarrotcarrot.entity.Chat;
 import org.springframework.data.jpa.repository.JpaRepository;
