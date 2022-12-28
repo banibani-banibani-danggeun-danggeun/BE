@@ -75,6 +75,7 @@ public class WebSecurityConfig {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+
                 .and()
                 .apply(new JwtConfig(jwtUtil, om));
 
@@ -82,6 +83,10 @@ public class WebSecurityConfig {
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
+//                .and()
+//                .redirectionEndpoint()
+//                .baseUri("https://jaeha.shop");
+
 
 
         return http.build();
