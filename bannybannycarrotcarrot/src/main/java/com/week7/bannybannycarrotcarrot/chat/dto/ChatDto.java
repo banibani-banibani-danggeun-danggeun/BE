@@ -12,11 +12,11 @@ public class ChatDto {
     private String message;
     private String sender;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     public ChatDto(String message, String sender, LocalDateTime createAt) {
         this.message = message;
         this.sender = sender;
-        this.createAt = createAt;
+        this.createdAt = createAt;
     }
 }
