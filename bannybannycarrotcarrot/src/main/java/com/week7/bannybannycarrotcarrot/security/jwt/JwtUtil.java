@@ -1,10 +1,12 @@
 package com.week7.bannybannycarrotcarrot.security.jwt;
 
 import com.week7.bannybannycarrotcarrot.dto.TokenDto;
+import com.week7.bannybannycarrotcarrot.entity.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
