@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
 @Configuration
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
+        http.cors();
 
         http
                 // antMatchers -> requestMatchers 로 변경 (version 3.0.0 에서는 이렇게 사용)
@@ -80,6 +82,7 @@ public class WebSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("http://jong-10.shop");
 
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 
@@ -90,6 +93,13 @@ public class WebSecurityConfig {
         config.setAllowCredentials(true);
 
         config.validateAllowCredentials();
+
+        config.addExposedHeader("Access_Token");
+
+        config.addExposedHeader("Refresh_Token");
+        config.setAllowedOriginPatterns(Arrays.asList("*"));
+        config.setAllowedMethods(Arrays.asList("POST", "GET", "DELETE", "PUT", "PATCH"));  //프론트에서 보내는 CRUD 허용
+        config.setAllowedHeaders(Arrays.asList("*")); //프론트에서 보내는 모든 해더 허용
 
         // 어떤 경로에 이 설정을 적용할 지 명시
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
