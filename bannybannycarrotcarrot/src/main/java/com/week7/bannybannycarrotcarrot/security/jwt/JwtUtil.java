@@ -1,6 +1,7 @@
 package com.week7.bannybannycarrotcarrot.security.jwt;
 
 import com.week7.bannybannycarrotcarrot.dto.TokenDto;
+import com.week7.bannybannycarrotcarrot.entity.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -143,10 +144,10 @@ public class JwtUtil {
 
           return TOKEN_PREFIX +
             Jwts.builder()
-            // username 넣기
-            .setSubject(id)
+                    .setSubject(String.valueOf(id))
+                    .claim(AUTHORITY_KEY, UserRole.USER)
                     .setExpiration(accessTokenExpiresIn)
-                    .signWith(key, signatureAlgorithm)
+                    .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 }
 }

@@ -50,7 +50,7 @@ public class KakaoService implements Logininterface {
 
 
 
-    public MsgDto.ResponseDto kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
+    public MsgDto.DataResponseDto kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
         String accessToken = getToken(code);
 
@@ -81,7 +81,7 @@ public class KakaoService implements Logininterface {
 //         4. JWT 토큰 반환
 //        String createToken =  jwtUtil.generateToken(kakaoUser.getUsername());
 //        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, generateToken);
-        return new MsgDto.ResponseDto(UserStatusCode.USER_LOGIN_SUCCESS);
+        return new MsgDto.DataResponseDto(UserStatusCode.USER_LOGIN_SUCCESS, kakaoUser.getNickname());
     }
 
     // 1. "인가 코드"로 "액세스 토큰" 요청

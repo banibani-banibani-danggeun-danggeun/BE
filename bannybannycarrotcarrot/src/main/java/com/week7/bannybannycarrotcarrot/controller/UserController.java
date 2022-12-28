@@ -40,7 +40,7 @@ public class UserController {
 
     // kakao OAuth 를 위해 추가 -종열
     @GetMapping("/kakao/callback")
-    public MsgDto.ResponseDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public MsgDto.DataResponseDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
 //        String createToken = kakaoService.kakaoLogin(code, response);
 
