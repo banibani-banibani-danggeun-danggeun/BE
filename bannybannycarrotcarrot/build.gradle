@@ -32,7 +32,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 
 	// 소셜 로그인 관련
-	implementation'com.google.code.gson:gson:2.8.7'
+	implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.6.3'
+
+	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

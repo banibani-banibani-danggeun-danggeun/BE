@@ -46,7 +46,7 @@ public class KakaoService implements Logininterface {
 
     //  https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code
 
-    //  https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=https://localhost:3000/api/user/kakao/callback&response_type=code
+    //  https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=http://localhost:3000/api/user/kakao/callback&response_type=code
 
 
 
@@ -64,13 +64,13 @@ public class KakaoService implements Logininterface {
 
         createToken(kakaoUser, response);
 
-        UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(kakaoUserInfo.getEmail(),kakaoUser.getUserRole());
-
-        //인증 완료된 인증 객체
-//        Authentication afterAuthentication = authenticationManagerBuilder.getObject().authenticate(beforeAuthentication);
-        String generateToken = jwtUtil.generateToken(beforeAuthentication);
-        //인증 완료된 객체로 JWT 생성
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, generateToken);
+//        UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(kakaoUserInfo.getEmail(),kakaoUser.getUserRole());
+//
+//        //인증 완료된 인증 객체
+////        Authentication afterAuthentication = authenticationManagerBuilder.getObject().authenticate(beforeAuthentication);
+//        String generateToken = jwtUtil.generateToken(beforeAuthentication);
+//        //인증 완료된 객체로 JWT 생성
+//        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, generateToken);
 
 
 
@@ -90,7 +90,7 @@ public class KakaoService implements Logininterface {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "d6c5b10cf544ae8fcc0cbb0bbc530328");
-        body.add("redirect_uri", "https://localhost:3000/api/user/kakao/callback");
+        body.add("redirect_uri", "http://localhost:3000/api/user/kakao/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
