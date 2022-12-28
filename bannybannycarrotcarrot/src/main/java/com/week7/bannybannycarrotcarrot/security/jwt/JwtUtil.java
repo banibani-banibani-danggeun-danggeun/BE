@@ -139,5 +139,16 @@ public class JwtUtil {
 
     }
 
+    public String createToken(Long id)  {
+        //access Token 만료 시간 = 현재 시간 + 제한 시간
+        Date accessTokenExpiresIn = new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRE_TIME);
 
+          return TOKEN_PREFIX +
+            Jwts.builder()
+            // username 넣기
+            .setSubject(id)
+                    .setExpiration(accessTokenExpiresIn)
+                    .signWith(key, signatureAlgorithm)
+                    .compact();
+}
 }
