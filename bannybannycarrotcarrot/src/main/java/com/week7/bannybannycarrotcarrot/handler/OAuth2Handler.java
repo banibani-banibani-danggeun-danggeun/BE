@@ -36,7 +36,7 @@ public class OAuth2Handler extends SimpleUrlAuthenticationSuccessHandler {
 
 
     private String makeRedirectUrl() {
-        return UriComponentsBuilder.fromUriString("https://jaeha.shop/")
+        return UriComponentsBuilder.fromUriString("http://localhost:3000/")
                 .build().toUriString();
     }
 
