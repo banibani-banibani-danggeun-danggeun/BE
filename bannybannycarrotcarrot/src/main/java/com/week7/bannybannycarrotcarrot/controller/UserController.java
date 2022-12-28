@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public MsgDto.ResponseDto login(@RequestBody UserDto.LoginRequestDto requestDto, HttpServletResponse httpServletResponse) {
+    public MsgDto.DataResponseDto login(@RequestBody UserDto.LoginRequestDto requestDto, HttpServletResponse httpServletResponse) {
         return userService.login(requestDto, httpServletResponse);
     }
 

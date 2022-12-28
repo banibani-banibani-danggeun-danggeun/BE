@@ -1,14 +1,13 @@
 package com.week7.bannybannycarrotcarrot.dto;
 
-import com.week7.bannybannycarrotcarrot.errorcode.PostStatusCode;
+
 import com.week7.bannybannycarrotcarrot.errorcode.StatusCode;
-import com.week7.bannybannycarrotcarrot.errorcode.UserStatusCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
+@Setter
 @Getter
 @NoArgsConstructor
 public class MsgDto {

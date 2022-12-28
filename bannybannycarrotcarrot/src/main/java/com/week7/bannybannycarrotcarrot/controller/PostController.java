@@ -23,7 +23,7 @@ public class PostController {
     private final PostService postService;
     //작성
     @PostMapping("")
-    public MsgDto.ResponseDto post(@RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<?> post(@RequestBody PostDto.PostRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails){
         return postService.post(requestDto, Long.parseLong(userDetails.getUsername()));
     }
     //전체조회

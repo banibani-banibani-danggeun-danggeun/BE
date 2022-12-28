@@ -27,7 +27,7 @@ public class PostService {
     private final UserRepository userRepository;
 
     @Transactional
-    public MsgDto.ResponseDto post(PostDto.PostRequestDto requestDto, Long userId) {
+    public ResponseEntity<?> post(PostDto.PostRequestDto requestDto, Long userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new RestApiException(CommonStatusCode.NOT_FIND_USER)
         );
@@ -35,7 +35,7 @@ public class PostService {
         Post post = new Post(requestDto, user.getNickname());
         System.out.println("-------------------------------------");
         postRepository.save(post);
-        return new MsgDto.ResponseDto(PostStatusCode.CREATE_POST);
+        return ResponseEntity.ok(new MsgDto.DataResponseDto(PostStatusCode.CREATE_POST, new PostDto.PostResponseDto(post)));
     }
 
 

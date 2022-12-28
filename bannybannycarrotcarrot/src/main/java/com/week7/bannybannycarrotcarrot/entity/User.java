@@ -15,10 +15,10 @@ public class User extends TimeStamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -27,7 +27,6 @@ public class User extends TimeStamped{
 
     @Column(nullable = false)
     private  String nickname;
-
 
     private String provider;//google, Kakao등등이들어감
 
@@ -49,5 +48,8 @@ public class User extends TimeStamped{
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+
     }
+
+
 }

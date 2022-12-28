@@ -3,6 +3,7 @@ package com.week7.bannybannycarrotcarrot.service;
 import com.week7.bannybannycarrotcarrot.dto.MsgDto;
 import com.week7.bannybannycarrotcarrot.dto.UserDto;
 import com.week7.bannybannycarrotcarrot.entity.User;
+import com.week7.bannybannycarrotcarrot.errorcode.CommonStatusCode;
 import com.week7.bannybannycarrotcarrot.errorcode.UserStatusCode;
 import com.week7.bannybannycarrotcarrot.exception.RestApiException;
 import com.week7.bannybannycarrotcarrot.repository.UserRepository;
@@ -37,17 +38,19 @@ public class UserService {
         if(userRepository.existsByUsername(requestDto.username()))
             throw new RestApiException(UserStatusCode.OVERLAPPED_USERNAME);
 
+        if(userRepository.existsByNickname(requestDto.nickname()))
+            return new MsgDto.ResponseDto("이미 존재하는 닉네임입니다.", HttpStatus.BAD_REQUEST.value());
+
 
         if (!Objects.equals(requestDto.passwordCheck(), requestDto.password()))
             throw new RestApiException(UserStatusCode.PASSWORD_CHECK);
 
         password = passwordEncoder.encode(requestDto.password());
-        userRepository.save(new User(requestDto.username(), password));
+        userRepository.save(new User(requestDto.username(), password, requestDto.nickname()));
         return new MsgDto.ResponseDto(UserStatusCode.USER_SIGNUP_SUCCESS);
-
     }
 
-    public MsgDto.ResponseDto login(UserDto.LoginRequestDto dto, HttpServletResponse httpServletResponse){
+    public MsgDto.DataResponseDto login(UserDto.LoginRequestDto dto, HttpServletResponse httpServletResponse){
         //아직 인증 전 객체
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(dto.username(), dto.password());
 
@@ -57,7 +60,11 @@ public class UserService {
         //인증 완료된 객체로 JWT 생성
         httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.generateToken(afterAuthentication));
 
-        return new MsgDto.ResponseDto(UserStatusCode.USER_LOGIN_SUCCESS);
+        User user = userRepository.findByUsername(dto.username()).orElseThrow(
+                () -> new RestApiException(CommonStatusCode.NOT_FIND_USER)
+        );
+
+        return new MsgDto.DataResponseDto(UserStatusCode.USER_LOGIN_SUCCESS,user.getNickname());
     }
 
     public MsgDto.ResponseDto idCheck(String username) {
