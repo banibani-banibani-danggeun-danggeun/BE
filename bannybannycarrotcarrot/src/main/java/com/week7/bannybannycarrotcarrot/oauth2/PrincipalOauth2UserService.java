@@ -83,8 +83,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(username, password1);
         Authentication afterAuthentication = authenticationManagerBuilder.getObject().authenticate(beforeAuthentication);
         System.out.println(jwtUtil.generateToken(afterAuthentication));
-
-
         httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.generateToken(afterAuthentication));
 
 

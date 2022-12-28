@@ -6,6 +6,7 @@ import com.week7.bannybannycarrotcarrot.entity.User;
 import com.week7.bannybannycarrotcarrot.errorcode.CommonStatusCode;
 import com.week7.bannybannycarrotcarrot.errorcode.UserStatusCode;
 import com.week7.bannybannycarrotcarrot.exception.RestApiException;
+import com.week7.bannybannycarrotcarrot.oauth2.PrincipalOauth2UserService;
 import com.week7.bannybannycarrotcarrot.repository.UserRepository;
 import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,8 @@ public class UserService {
     private final JwtUtil jwtUtil;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final PrincipalOauth2UserService principalOauth2UserService;
 
     public MsgDto.ResponseDto signup(UserDto.SignupRequestDto requestDto) {
         String password = "";

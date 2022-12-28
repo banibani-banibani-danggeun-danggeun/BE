@@ -31,7 +31,6 @@ public class PostService {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new RestApiException(CommonStatusCode.NOT_FIND_USER)
         );
-
         Post post = new Post(requestDto, user.getNickname());
         System.out.println("-------------------------------------");
         postRepository.save(post);
