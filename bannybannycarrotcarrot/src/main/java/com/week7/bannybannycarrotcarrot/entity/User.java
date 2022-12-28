@@ -33,12 +33,7 @@ public class User extends TimeStamped{
 
     private String providerId;
 
-//    @Builder
-//    public User(String username, String password) {
-//        this.username = username;
-//        this.password = password;
-//        this.userRole = UserRole.USER;
-//    }
+
 
     @Builder
     public User(String username, String password, String provider, String providerId, String nickname){
