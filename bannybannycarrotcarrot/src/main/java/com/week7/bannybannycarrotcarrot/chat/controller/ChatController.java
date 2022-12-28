@@ -1,5 +1,6 @@
 package com.week7.bannybannycarrotcarrot.chat.controller;
 
+import com.week7.bannybannycarrotcarrot.chat.dto.ChatDto;
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatMessage;
 import com.week7.bannybannycarrotcarrot.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,14 @@ public class ChatController {
     @MessageMapping("/chat/message")
     public void message(ChatMessage message) {
         chatService.save(message);
-        if (ChatMessage.MessageType.ENTER.equals(message.getType())){
+        if (ChatMessage.MessageType.ENTER.equals(message.getType())) {
             message.setMessage(message.getSender() + "님이 입장하셨습니다.");
         }
         messagingTemplate.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+    }
+
+    @GetMapping("/chat/getmessage/{roomId}")
+    public List<ChatDto> getMessage(@PathVariable Long roomId) {
+        return chatService.getMessage(roomId);
     }
 }

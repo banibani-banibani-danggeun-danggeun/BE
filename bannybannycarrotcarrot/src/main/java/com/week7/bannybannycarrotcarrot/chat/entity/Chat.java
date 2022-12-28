@@ -1,11 +1,16 @@
 package com.week7.bannybannycarrotcarrot.chat.entity;
 
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatMessage;
+import com.week7.bannybannycarrotcarrot.entity.TimeStamped;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-public class Chat {
+@NoArgsConstructor
+@Getter
+public class Chat extends TimeStamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +20,7 @@ public class Chat {
     private ChatMessage.MessageType type; // 메시지 타입
 
     @Column(nullable = false)
-    private String roomId; // 방번호
+    private Long roomId; // 방번호
 
     @Column(nullable = false)
     private String sender; // 메시지 보낸사람
