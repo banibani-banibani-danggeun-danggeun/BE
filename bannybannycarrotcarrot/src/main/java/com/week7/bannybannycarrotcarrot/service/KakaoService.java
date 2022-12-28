@@ -12,6 +12,7 @@ import com.week7.bannybannycarrotcarrot.errorcode.UserStatusCode;
 import com.week7.bannybannycarrotcarrot.repository.UserRepository;
 import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -79,7 +80,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "d6c5b10cf544ae8fcc0cbb0bbc530328");
-        body.add("redirect_uri", "http://jong-10.shop/api/user/kakao/callback");
+        body.add("redirect_uri", "http://localhost:3000");
         body.add("code", code);
 
         // HTTP 요청 보내기
