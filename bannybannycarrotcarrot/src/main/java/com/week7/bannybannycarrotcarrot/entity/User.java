@@ -49,6 +49,7 @@ public class User extends TimeStamped{
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.userRole = UserRole.USER;
     }
 
 

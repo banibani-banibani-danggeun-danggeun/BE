@@ -79,18 +79,14 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             log.info("최초로그인이아님 --------------------");
         }
 
-//        Map<String, Object> header = new HashMap<>();
 
-
-        log.info("여기는타나?? --------------------");
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(username, password1);
         Authentication afterAuthentication = authenticationManagerBuilder.getObject().authenticate(beforeAuthentication);
         System.out.println(jwtUtil.generateToken(afterAuthentication));
-        log.info("여기는타나??22222222222222222222 --------------------");
-//        header.put(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.generateToken(afterAuthentication));
+
 
         httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.generateToken(afterAuthentication));
-        log.info("마지막로그 --------------------");
+
 
 
         return oAuth2User1;
