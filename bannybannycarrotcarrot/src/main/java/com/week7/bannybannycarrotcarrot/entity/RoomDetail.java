@@ -1,14 +1,16 @@
 package com.week7.bannybannycarrotcarrot.entity;
 
+import jdk.jfr.Timespan;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Entity
 @NoArgsConstructor
 @Getter
-public class RoomDetail {
+public class RoomDetail extends TimeStamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
