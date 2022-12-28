@@ -6,9 +6,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.week7.bannybannycarrotcarrot.dto.KakaoUserInfoDto;
 import com.week7.bannybannycarrotcarrot.dto.MsgDto;
+import com.week7.bannybannycarrotcarrot.dto.TokenDto;
+import com.week7.bannybannycarrotcarrot.entity.RefreshToken;
 import com.week7.bannybannycarrotcarrot.entity.User;
 import com.week7.bannybannycarrotcarrot.entity.UserRole;
 import com.week7.bannybannycarrotcarrot.errorcode.UserStatusCode;
+import com.week7.bannybannycarrotcarrot.interfacepackage.Logininterface;
+import com.week7.bannybannycarrotcarrot.repository.RefreshTokenRepository;
+import com.week7.bannybannycarrotcarrot.repository.SocialAccessTokenRepository;
 import com.week7.bannybannycarrotcarrot.repository.UserRepository;
 import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -27,20 +32,21 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class KakaoService {
-
+public class KakaoService implements Logininterface {
+    public final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
-    private  final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
+    public   final UserRepository userRepository;
+    public final JwtUtil jwtUtil;
 
     //  https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code
 
-    //  https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=http://52.79.213.249/api/user/kakao/callback&response_type=code
+    //  https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=https://localhost:3030/api/user/kakao/callback&response_type=code
 
 
 
@@ -53,6 +59,10 @@ public class KakaoService {
 
         // 3. 필요시에 회원가입
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
+
+        forceLoginUser(kakaoUser);
+
+        createToken(kakaoUser, response);
 
         UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(kakaoUserInfo.getEmail(),kakaoUser.getUserRole());
 
@@ -80,7 +90,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "d6c5b10cf544ae8fcc0cbb0bbc530328");
-        body.add("redirect_uri", "http://localhost:3000");
+        body.add("redirect_uri", "https://localhost:3030/api/user/kakao/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
@@ -161,6 +171,24 @@ public class KakaoService {
         }
         return kakaoUser;
     }
+
+    public void createToken(User user, HttpServletResponse response) {
+        TokenDto tokenDto = jwtUtil.createAllToken(user.getEmail());
+
+        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByAccountEmail(user.getEmail());
+
+        if (refreshToken.isPresent()) {
+            refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
+        } else {
+            RefreshToken newToken = new RefreshToken(tokenDto.getRefreshToken(), user.getEmail());
+            refreshTokenRepository.save(newToken);
+        }
+
+        setHeader(response, tokenDto);
+    }
+
+
+
 
 
 }
