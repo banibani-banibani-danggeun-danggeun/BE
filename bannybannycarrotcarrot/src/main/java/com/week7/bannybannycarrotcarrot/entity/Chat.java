@@ -3,13 +3,18 @@ package com.week7.bannybannycarrotcarrot.entity;
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatMessage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @Getter
-public class Chat extends TimeStamped{
+@EntityListeners(AuditingEntityListener.class)
+public class Chat{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +31,14 @@ public class Chat extends TimeStamped{
 
     @Column
     private String message; // 메시지
+
+    @Column
+    @CreatedDate
+    private LocalDateTime createAt;
+
+    @Column
+    @LastModifiedDate
+    private LocalDateTime modifiedAt;
 
     public Chat(ChatMessage message) {
         this.type = message.getType();
