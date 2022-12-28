@@ -31,6 +31,9 @@ dependencies {
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
 
+	// 소셜 로그인 관련
+	implementation'com.google.code.gson:gson:2.8.7'
+
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'

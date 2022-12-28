@@ -37,9 +37,9 @@ public class KakaoService {
     private  final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
-    //             https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code
+    //  https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code
 
-    //             https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=http://52.79.213.249/api/user/kakao/callback&response_type=code
+    //  https://kauth.kakao.com/oauth/authorize?client_id=d6c5b10cf544ae8fcc0cbb0bbc530328&redirect_uri=http://52.79.213.249/api/user/kakao/callback&response_type=code
 
 
 
@@ -79,7 +79,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "d6c5b10cf544ae8fcc0cbb0bbc530328");
-        body.add("redirect_uri", "http://52.79.213.249/api/user/kakao/callback");
+        body.add("redirect_uri", "http://jong-10.shop/api/user/kakao/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
