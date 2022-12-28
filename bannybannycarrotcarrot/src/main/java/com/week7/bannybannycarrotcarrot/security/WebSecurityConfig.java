@@ -1,6 +1,7 @@
 package com.week7.bannybannycarrotcarrot.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.week7.bannybannycarrotcarrot.handler.OAuth2Handler;
 import com.week7.bannybannycarrotcarrot.oauth2.PrincipalOauth2UserService;
 import com.week7.bannybannycarrotcarrot.security.exceptionhandler.CustomAccessDeniedHandler;
 import com.week7.bannybannycarrotcarrot.security.exceptionhandler.CustomAuthenticationEntryPoint;
@@ -30,6 +31,8 @@ public class WebSecurityConfig {
     private final ObjectMapper om;
 
     private final PrincipalOauth2UserService principalOauth2UserService;
+
+    private final OAuth2Handler oAuth2Handler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -81,6 +84,7 @@ public class WebSecurityConfig {
 
         http
                 .oauth2Login()
+                .successHandler(oAuth2Handler)
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
 //                .and()

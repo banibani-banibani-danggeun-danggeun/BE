@@ -1,6 +1,7 @@
 package com.week7.bannybannycarrotcarrot.oauth2;
 
 import com.week7.bannybannycarrotcarrot.entity.User;
+import com.week7.bannybannycarrotcarrot.handler.OAuth2Handler;
 import com.week7.bannybannycarrotcarrot.repository.UserRepository;
 import com.week7.bannybannycarrotcarrot.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
     private final JwtUtil jwtUtil;
 
-    private HttpServletResponse httpServletResponse;
+    private final HttpServletResponse httpServletResponse;
+
+
 
 
     @Override
