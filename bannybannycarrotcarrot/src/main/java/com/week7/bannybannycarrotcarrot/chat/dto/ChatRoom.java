@@ -12,13 +12,24 @@ import java.util.UUID;
 @Getter
 @Slf4j
 public class ChatRoom {
-    private String roomId;
+    private Long roomId;
     private String postUserNickname;
 
-    public static ChatRoom create(String postUserNickname){
+    private boolean exist;
+
+    public ChatRoom(Long roomId, String postUserNickname, boolean exist) {
+        this.roomId = roomId;
+        this.postUserNickname = postUserNickname;
+        this.exist = exist;
+    }
+
+
+
+    /*public static ChatRoom create(String postUserNickname){
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.roomId = UUID.randomUUID().toString();
         chatRoom.postUserNickname = postUserNickname;
         return chatRoom;
-    }
+    }*/
+
 }

@@ -1,10 +1,13 @@
 package com.week7.bannybannycarrotcarrot.entity;
 
+import com.week7.bannybannycarrotcarrot.chat.entity.Room;
 import com.week7.bannybannycarrotcarrot.dto.PostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -32,6 +35,8 @@ public class Post extends TimeStamped{
     @Column
     private String nickname;
 
+/*    @OneToMany(mappedBy = "post")
+    private List<Room> rooms = new ArrayList<>();*/
 
     public Post(PostDto.PostRequestDto requestDto, String nickname) {
         this.title = requestDto.title();

@@ -38,6 +38,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/api/user/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/post/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/ws-stomp/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/chat/**").permitAll()
                         .anyRequest().authenticated());
         http
                 .logout()
