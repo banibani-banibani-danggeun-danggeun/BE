@@ -3,9 +3,7 @@ package com.week7.bannybannycarrotcarrot.chat.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter

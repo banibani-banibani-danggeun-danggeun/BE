@@ -1,13 +1,10 @@
 package com.week7.bannybannycarrotcarrot.entity;
 
-import com.week7.bannybannycarrotcarrot.chat.entity.Room;
 import com.week7.bannybannycarrotcarrot.dto.PostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor

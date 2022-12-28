@@ -1,7 +1,6 @@
-package com.week7.bannybannycarrotcarrot.chat.entity;
+package com.week7.bannybannycarrotcarrot.entity;
 
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatMessage;
-import com.week7.bannybannycarrotcarrot.entity.TimeStamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

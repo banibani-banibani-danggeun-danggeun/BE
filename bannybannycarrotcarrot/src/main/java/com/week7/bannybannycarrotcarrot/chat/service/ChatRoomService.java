@@ -1,8 +1,8 @@
 package com.week7.bannybannycarrotcarrot.chat.service;
 
 import com.week7.bannybannycarrotcarrot.chat.dto.ChatRoom;
-import com.week7.bannybannycarrotcarrot.chat.entity.Room;
-import com.week7.bannybannycarrotcarrot.chat.entity.RoomDetail;
+import com.week7.bannybannycarrotcarrot.entity.Room;
+import com.week7.bannybannycarrotcarrot.entity.RoomDetail;
 import com.week7.bannybannycarrotcarrot.chat.repository.RoomDetailRepository;
 import com.week7.bannybannycarrotcarrot.chat.repository.RoomRepository;
 import com.week7.bannybannycarrotcarrot.entity.Post;

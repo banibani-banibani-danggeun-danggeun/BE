@@ -1,6 +1,5 @@
-package com.week7.bannybannycarrotcarrot.chat.entity;
+package com.week7.bannybannycarrotcarrot.entity;
 
-import com.week7.bannybannycarrotcarrot.entity.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
