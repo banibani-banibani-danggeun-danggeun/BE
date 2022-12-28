@@ -45,10 +45,10 @@ public class User extends TimeStamped{
     }
 
 
-    public User(String username, String password) {
+    public User(String username, String password, String nickname) {
         this.username = username;
         this.password = password;
-
+        this.nickname = nickname;
     }
 
 
