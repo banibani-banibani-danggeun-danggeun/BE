@@ -60,9 +60,13 @@ public class KakaoService implements Logininterface {
         // 3. 필요시에 회원가입
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
 
-        forceLoginUser(kakaoUser);
+//        forceLoginUser(kakaoUser);
+//        createToken(kakaoUser, response);
 
-        createToken(kakaoUser, response);
+        String Token = jwtUtil.createToken(kakaoUser.getId());
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, Token);
+
+
 
 //        UsernamePasswordAuthenticationToken beforeAuthentication = new UsernamePasswordAuthenticationToken(kakaoUserInfo.getEmail(),kakaoUser.getUserRole());
 //
@@ -146,16 +150,8 @@ public class KakaoService implements Logininterface {
         // DB 에 중복된 Kakao Id 가 있는지 확인
         Long kakaoId = kakaoUserInfo.getId();
         User kakaoUser = userRepository.findByKakaoId(kakaoId)
-                .orElse(null);
-        if (kakaoUser == null) {
-            // 카카오 사용자 email 동일한 email 가진 회원이 있는지 확인
-            String kakaoEmail = kakaoUserInfo.getEmail();
-            User sameEmailUser = userRepository.findByEmail(kakaoEmail).orElse(null);
-            if (sameEmailUser != null) {
-                kakaoUser = sameEmailUser;
-                // 기존 회원정보에 카카오 Id 추가
-                kakaoUser = kakaoUser.kakaoIdUpdate(kakaoId);
-            } else {
+                .orElse(new User());
+        if (kakaoUser.getKakaoId() == null) {
                 // 신규 회원가입
                 // password: random UUID
                 String password = UUID.randomUUID().toString();
@@ -163,29 +159,26 @@ public class KakaoService implements Logininterface {
 
                 // email: kakao email
                 String email = kakaoUserInfo.getEmail();
-
                 kakaoUser = new User(kakaoUserInfo.getNicknmae(), kakaoId, encodedPassword, email, UserRole.USER);
-            }
-
-            userRepository.save(kakaoUser);
+                userRepository.save(kakaoUser);
         }
         return kakaoUser;
     }
 
-    public void createToken(User user, HttpServletResponse response) {
-        TokenDto tokenDto = jwtUtil.createAllToken(user.getEmail());
-
-        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByAccountEmail(user.getEmail());
-
-        if (refreshToken.isPresent()) {
-            refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
-        } else {
-            RefreshToken newToken = new RefreshToken(tokenDto.getRefreshToken(), user.getEmail());
-            refreshTokenRepository.save(newToken);
-        }
-
-        setHeader(response, tokenDto);
-    }
+//    public void createToken(User user, HttpServletResponse response) {
+//        TokenDto tokenDto = jwtUtil.createAllToken(user.getEmail());
+//
+//        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByAccountEmail(user.getEmail());
+//
+//        if (refreshToken.isPresent()) {
+//            refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
+//        } else {
+//            RefreshToken newToken = new RefreshToken(tokenDto.getRefreshToken(), user.getEmail());
+//            refreshTokenRepository.save(newToken);
+//        }
+//
+//        setHeader(response, tokenDto);
+//    }
 
 
 
