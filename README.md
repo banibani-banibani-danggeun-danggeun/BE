@@ -38,6 +38,10 @@
 <img width="800" alt="api3" src="https://blog.kakaocdn.net/dn/EzZHZ/btrUTJbNH97/Ry7iBWzelmvDX3U8rUxmC1/img.png">  
 <img width="800" alt="api3" src="https://blog.kakaocdn.net/dn/EifTa/btrUVbFUujz/8KdMujorfyUhy87XI5i3x1/img.png">
 
+## 📏 와이어프레임
+
+![와이어프레임](https://cdn.discordapp.com/attachments/1037267111585792020/1055867403344543754/IMB_XZKGyK.gif)
+
 ## 🗺 ERD
 <img width="800" alt="메인페이지2" src="https://user-images.githubusercontent.com/65327103/209082821-ecdf919c-601a-4c36-b2d3-5d205b0414f6.png">  
 
