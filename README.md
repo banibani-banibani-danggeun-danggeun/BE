@@ -25,6 +25,10 @@
 <a href="https://github.com/misracis2" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=이승열 &color=08CE5D&style=for-the-badge&>"/></a>
 <a href="https://github.com/wogk9854" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=최재하 &color=08CE5D&style=for-the-badge&>"/></a>
   
+## 🔨 구현 기능  
+* 2022년 12월 23일 ~ 2022년 12월 29일   
+<p>
+
 ## 🛠️ 기술 스택
   
 |종류|기술|
