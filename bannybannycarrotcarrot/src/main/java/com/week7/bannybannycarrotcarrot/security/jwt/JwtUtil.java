@@ -145,10 +145,10 @@ public class JwtUtil {
 
           return TOKEN_PREFIX +
             Jwts.builder()
-            // username 넣기
-            .setSubject(id)
+                    .setSubject(String.valueOf(id))
+                    .claim(AUTHORITY_KEY, UserRole.USER)
                     .setExpiration(accessTokenExpiresIn)
-                    .signWith(key, signatureAlgorithm)
+                    .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 }
 }
