@@ -62,15 +62,6 @@ public class ChatRoomService {
 
             Post post = room.getPost();
             ChatRoom chatRoom = new ChatRoom(room.getId(), post);
-//            ChatRoom chatRoom = ChatRoom.builder()
-//                    .roomId(room.getId())
-//                    .postUserNickname(post.getNickname())
-//                    .title(post.getTitle())
-//                    .content(post.getContent())
-//                    .image(post.getImage())
-//                    .price(post.getPrice())
-//                    .location(post.getLocation())
-//                    .build();
             chatRoomList.add(chatRoom);
         }
         return chatRoomList;
