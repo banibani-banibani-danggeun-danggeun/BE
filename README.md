@@ -54,12 +54,12 @@
 <br>
 <div markdown="1">
 <b>오픈 api를 사용하여 전국의 병‧의원 중 진료과목에 성형외과가 있는 기관명을 받아와 조회하는 방식으로 해결</b>
-- "Invalid SockJS path '/chat/room' - required to have 3 path segments" 에러 메시지  
-- registerStompEndpoints 메소드에서 endpoint 설정, CORS 정책을 위한 출저 허용, SockJS 설정  
-- 프론트에서 API에 따라 요청을 보낼 때 CORS 문제, url에 endpoint를 추가하여 요청하면 404에러  
-- 특정 채팅방 조회는 404, 전체 방조회는 CORS  
-- 원인 response에 access-control-allow-origin응답이 없었음  
-- spring security를 이용해 해결  
+- "Invalid SockJS path '/chat/room' - required to have 3 path segments" 에러 메시지<br/>
+- registerStompEndpoints 메소드에서 endpoint 설정, CORS 정책을 위한 출저 허용, SockJS 설정<br/>
+- 프론트에서 API에 따라 요청을 보낼 때 CORS 문제, url에 endpoint를 추가하여 요청하면 404에러<br/>
+- 특정 채팅방 조회는 404, 전체 방조회는 CORS<br/>
+- 원인 response에 access-control-allow-origin응답이 없었음<br/>
+- spring security를 이용해 해결<br/>
 </div>
 </details>
 
