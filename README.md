@@ -43,7 +43,7 @@
 ![와이어프레임](https://cdn.discordapp.com/attachments/1037267111585792020/1055867403344543754/IMB_XZKGyK.gif)
 
 ## 🗺 ERD
-<img width="800" alt="메인페이지2" src="https://user-images.githubusercontent.com/65327103/209082821-ecdf919c-601a-4c36-b2d3-5d205b0414f6.png">  
+<img width="800" alt="메인페이지2" src="https://files.slack.com/files-pri/T01L2TNGW3T-F04H0CJ7M5J/____________erd.png">  
 
 ## 🧩아키텍쳐
 <img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/bOCbtg/btrUneCW2D2/BZyYOomTIzYOHSm4bmkEK1/img.png">  
@@ -63,18 +63,14 @@
 </details>
 
 <details>
-<summary>2. 해당 게시글에서 작성한 댓글이 아님에도 댓글 아이디값만으로 모든 댓글의 수정이 가능했던 문제</summary>
+<summary> 2. 채팅방 구독을 위해 connect 요청 시 404 에러 발생 문제</summary>
 <br>
 <div markdown="2">
-<b>게시글과 댓글의 존재 여부는 확인했으나 해당 댓글이 그 게시글에 등록된 댓글인지 확인지 않았기 때문에 발생한 문제로,&nbsp;댓글이 가진 게시글ID가 해당 게시글의 ID와 같은지 확인 하는 코드를 추가하여 해결</b> 
 
-```java
-//추가한 코드
-if (!comment.getPostId().equals(postId)) {
-	throw new CustomException(ErrorCode.MISMATCH_COMMENT);
-}
-``` 
-
+<b>원인: 채팅방 구독을 위해 stomp 메소드인 connect와 subscribe를 해야하는데 connect가 완료죄지 않는 문제</b><br/>
+log를 활용해 문제가 되는 메소드 지점(connect) 확인<br/>
+connect 실행 시 endpoint로 수차례 요청이 가는데 해당 URL이 잘못되어 404에러 확인<br/>
+요청 URL을 수정하여 connect 실행 확인<br/>
 
 </div>
 </details>
