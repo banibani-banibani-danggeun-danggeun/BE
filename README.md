@@ -50,89 +50,16 @@
 
 ## 💡 Trouble Shooting
 <details>
-<summary>1. 거짓된 병원 정보를 입력할 수 있었던 문제</summary>
+<summary>1. 채팅 CORS 에러</summary>
 <br>
 <div markdown="1">
 <b>오픈 api를 사용하여 전국의 병‧의원 중 진료과목에 성형외과가 있는 기관명을 받아와 조회하는 방식으로 해결</b>   
-	
-* Scheduler
-	
-```java
-	@Component
-	@EnableScheduling
-	@RequiredArgsConstructor
-	public class HospitalScheduler {
-
-		private final HospitalService hospitalService;
-
-		@Transactional
-		@Scheduled(cron = "0 0 1 * * *")
-		public void hospitalDataScheduling() {
-			hospitalService.saveHospitalApiData();
-		}
-	}
-```  
-	
-* Service
-	
-```java
-	@Service
-	@Slf4j
-	@RequiredArgsConstructor
-	@ToString
-	public class HospitalService {
-
-	    private final HospitalRepository hospitalRepository;
-
-	    @Value("${hospital-url}")
-	    private String hospitalUrl;
-
-	    @Value("${hospital-key}")
-	    private String hospitalKey;
-
-	    private  Hospital getTagValue(String tag, Element eElement) {
-		NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
-		Node nValue = nlList.item(0);
-		if (nValue == null)
-		    return null;
-		return new Hospital(nValue.getNodeValue());
-	    }
-
-	    public void saveHospitalApiData(){
-		try{
-		    StringBuilder urlBuilder = new StringBuilder(hospitalUrl); /*URL*/
-		    urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "="+hospitalKey); /*Service Key*/
-		    urlBuilder.append("&" + URLEncoder.encode("QD", "UTF-8") + "=" + URLEncoder.encode("D010", "UTF-8")); /*CODE_MST의'D000' 참조(D001~D029)*/
-		    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("4728", "UTF-8")); /*목록 건수*/
-		    String url = urlBuilder.toString();
-
-		    Document documentInfo = DocumentBuilderFactory
-			    .newInstance()
-			    .newDocumentBuilder()
-			    .parse(url);
-
-		    documentInfo.getDocumentElement().normalize();
-
-		    NodeList nodeList = documentInfo.getElementsByTagName("item");
-
-		    for (int temp = 0; temp < nodeList.getLength(); temp++) {
-			Node node = nodeList.item(temp);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-			    Element element = (Element) node;
-
-			    Hospital hospitalData = getTagValue("dutyName", element);
-			    log.info(":::" + hospitalData + ":::");
-			    hospitalRepository.save(hospitalData);
-			}
-		    }
-		} catch(Exception e) {
-		    e.printStackTrace();
-		    log.error("hospital data not saved");
-		    throw new CustomException(ErrorCode.FAILED_SAVE_DATA);
-		}
-	    }
-	}
-```
+ - "Invalid SockJS path '/chat/room' - required to have 3 path segments" 에러 메시지  
+ - registerStompEndpoints 메소드에서 endpoint 설정, CORS 정책을 위한 출저 허용, SockJS 설정  
+ - 프론트에서 API에 따라 요청을 보낼 때 CORS 문제, url에 endpoint를 추가하여 요청하면 404에러  
+ - 특정 채팅방 조회는 404, 전체 방조회는 CORS  
+ - 원인 response에 access-control-allow-origin응답이 없었음  
+ - spring security를 이용해 해결  
 </div>
 </details>
 
