@@ -162,3 +162,20 @@ connect 실행 시 endpoint로 수차례 요청이 가는데 해당 URL이 잘�
 </div>
 </details>
 
+<details>
+<summary>6. OAuth2 소셜로그인 </summary>
+<br>
+<div markdown="4">
+<b> 처음엔 BE 에서 다 처리하고 FE 는 소셜로그인페이지로 이동하는 url 만 전달하면 될걸로 예상 </b> 
+<br>
+<b> BE 에서 다 토큰을 발급받아 헤더,쿠키 등 여러방식으로 반환하는것은 성공함</b>
+<br>
+<b> 그러나 FE 에서 온 요청이없어 줄려는사람만있고 받으려는사람은 없는 상황이 발생</b>
+<br>
+<b> BE 에서만 처리하고 전달하는 방법이 있을걸로 예상되나 성공하지못함</b>
+<br>
+<b> 결국 가장 주류로 이용되는 FE 에서 인가코드를 요청하고 redirect 로 BE 에 요청하는 방법을 택하며 </b>
+<br>
+</div>
+</details>
+
