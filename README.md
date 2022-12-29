@@ -1,5 +1,5 @@
-# 항해언니, Hanghae Sisters(Back-End)
-> **성형에 대해 고민하고 있으신가요?**  
+# 바니바니 당근 마켓(Back-End)
+> **당근 마켓 클론 코딩 프로젝트**  
 > 경험과 정보를 공유하고 고민을 덜어가세요!!
 
 * [[Notion: 항해언니 프로젝트 정보]](https://www.notion.so/d2dffd18ee9d4d8e958185e288c08a2e)
