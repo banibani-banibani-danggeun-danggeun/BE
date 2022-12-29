@@ -2,36 +2,25 @@
 > **당근 마켓 클론 코딩 프로젝트**  
 > 바니바니 당근마켓. 중고 거래, 이웃과 함께해요. 가깝고 따뜻한 당신의 근처를 만들어요.
 
-* [[Notion: 항해언니 프로젝트 정보]](https://www.notion.so/d2dffd18ee9d4d8e958185e288c08a2e)
+* [[Notion: 항해언니 프로젝트 정보]](https://royal-storm-069.notion.site/6-21181e915241465c92495075706dbe3c)
 * [[프로젝트 시연영상 보러가기]](https://youtu.be/gjkK6H2Z5v4)
-* [[Front-End Repository]](https://github.com/HanghaeSisters/Front)  
+* [[Front-End Repository]](https://github.com/banibani-banibani-danggeun-danggeun/FE_new)  
   
 ## 📆 개발 기간  
-2022년 12월 16일 ~ 2022년 12월 22일   
+2022년 12월 23일 ~ 2022년 12월 29일   
 <p>
 
   
-## 👯 팀원  
-**김규민(팀장)**  
-<p>
-  
-[<img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">](https://github.com/starMinK)
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
-</p>
+## 👥 팀 소개
+#### `Frontend`
+ <a href="https://github.com/JIEUN24" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=최신영 &color=61dafb&style=for-the-badge&>"/></a>
+ <a href="https://github.com/GYMMX" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김세연 &color=61dafb&style=for-the-badge&>"/></a>  
+ <a href="https://github.com/GYMMX" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김하영 &color=61dafb&style=for-the-badge&>"/></a>
 
-**김소라**
-<p>
-  
-[<img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">](https://github.com/dev-rara)
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
-</p>
-
-**정첨백**
-<p>
-  
-[<img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">](https://github.com/civilcoy)
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
-</p>  
+#### `Backend`
+<a href="https://github.com/ksanacloud" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=김규민 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/EunheaSong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=유종열 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=심현웅 &color=08CE5D&style=for-the-badge&>"/></a>
   
 ## 🛠️ 기술 스택
   
