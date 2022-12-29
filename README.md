@@ -49,7 +49,7 @@
 <img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/bxKbco/btrUWSToS9W/vQC2owz9mExVJ6mb75lXpK/img.png">  
 
 ## 🧩아키텍쳐
-<img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/bOCbtg/btrUneCW2D2/BZyYOomTIzYOHSm4bmkEK1/img.png">  
+<img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/cS7FBF/btrUWSMGcgH/9BG4uAl61xtSXhPKCTtPF1/img.png">  
 
 ## 💡 Trouble Shooting
 <details>
