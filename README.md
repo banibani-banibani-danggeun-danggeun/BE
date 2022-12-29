@@ -1,6 +1,6 @@
 ![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=🥕바니%20바니%20당근%20마켓&fontSize=50&fontAlign=50&color=gradient&animation=fadeIn&fontColor=F49F5B)
 
-# 바니바니 당근 마켓(Back-End)
+# 바니바니 당근 마켓(Back-End) readME 수정중
 > **당근 마켓 클론 코딩 프로젝트**  
 > 바니바니 당근마켓. 중고 거래, 이웃과 함께해요. 가깝고 따뜻한 당신의 근처를 만들어요.
 
@@ -15,24 +15,16 @@
   
 ## 👥 팀 소개
 #### `Frontend`
- <a href="https://github.com/front-chan" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=최신영 &color=61dafb&style=for-the-badge&>"/></a>
- <a href="https://github.com/saeyeonKim" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김세연 &color=61dafb&style=for-the-badge&>"/></a>
- <a href="https://github.com/hannahcodes0" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김하영 &color=61dafb&style=for-the-badge&>"/></a>
+ <a href="https://github.com/JIEUN24" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=최신영 &color=61dafb&style=for-the-badge&>"/></a>
+ <a href="https://github.com/GYMMX" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김세연 &color=61dafb&style=for-the-badge&>"/></a>
+ <a href="https://github.com/GYMMX" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=React&message=김하영 &color=61dafb&style=for-the-badge&>"/></a>
 
 #### `Backend`
-<a href="https://github.com/starMinK" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=김규민 &color=08CE5D&style=for-the-badge&>"/></a>
-<a href="https://github.com/jongyeol2" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=유종열 &color=08CE5D&style=for-the-badge&>"/></a>
-<a href="https://github.com/misracis2" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=이승열 &color=08CE5D&style=for-the-badge&>"/></a>
-<a href="https://github.com/wogk9854" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=최재하 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/ksanacloud" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=김규민 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/EunheaSong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=유종열 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=이승열 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=최재하 &color=08CE5D&style=for-the-badge&>"/></a>
   
-## 🔨 구현 기능  
-* 로그인
-* 회원가입
-* 게시글 CRUD
-* 소셜 로그인
-* 실시간 채팅  
-<p>
-
 ## 🛠️ 기술 스택
   
 |종류|기술|
@@ -152,3 +144,21 @@ connect 실행 시 endpoint로 수차례 요청이 가는데 해당 URL이 잘�
 
 </div>
 </details>
+
+<details>
+<summary>5. https 502 에러 </summary>
+<br>
+<div markdown="4">
+<b> 도메인을 새로고침할때마다 정상작동과 502에러를 둘다 확인 </b> 
+<br>
+<b> 한요청을 보내는데 성공과 에러가 번갈아가며 확인이 되어 로드밸런싱 설정문제로 의심</b>
+<br>
+<b> 다른 레퍼런스를 확인해보니 로드밸런스설정에서 80, 443 포트를 연결하는데 80포트만 연결해도 작동이되는걸 확인</b>
+<br>
+<b> 서버비용을 아끼기위해 한 서버에 2개를 연결해 로드밸런싱 목적에 맞는 로드밸런싱을 한게 아니란걸 인지한 후 깔끔하게 443포트를 삭제</b>
+<br>
+<b> 443포트를 삭제한후 정상작동하는걸 확인후 443포트설정이 문제였던걸로 추정, 정확한 원인은 아직 못찾음</b>
+<br>
+</div>
+</details>
+
