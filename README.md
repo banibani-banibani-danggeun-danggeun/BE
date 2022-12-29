@@ -26,7 +26,11 @@
 <a href="https://github.com/wogk9854" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=최재하 &color=08CE5D&style=for-the-badge&>"/></a>
   
 ## 🔨 구현 기능  
-* 2022년 12월 23일 ~ 2022년 12월 29일   
+* 로그인
+* 회원가입
+* 게시글 CRUD
+* 소셜 로그인
+* 실시간 채팅  
 <p>
 
 ## 🛠️ 기술 스택
