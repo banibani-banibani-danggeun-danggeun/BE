@@ -33,17 +33,13 @@ public class Chat{
     private String message; // 메시지
 
     @Column
-    @CreatedDate
     private LocalDateTime createAt;
 
-    @Column
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
-
-    public Chat(ChatMessage message) {
+    public Chat(ChatMessage message, LocalDateTime createAt) {
         this.type = message.getType();
         this.roomId = message.getRoomId();
         this.sender = message.getSender();
         this.message = message.getMessage();
+        this.createAt = createAt;
     }
 }
