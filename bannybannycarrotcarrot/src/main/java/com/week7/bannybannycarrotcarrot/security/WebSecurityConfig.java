@@ -33,12 +33,12 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
-        http.cors();
 
         http
                 // antMatchers -> requestMatchers 로 변경 (version 3.0.0 에서는 이렇게 사용)
                 .authorizeHttpRequests(auth -> auth
                         .antMatchers("/api/user/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .antMatchers("/api/user/kakao/callback").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/post/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/ws-stomp/**").permitAll()
@@ -84,7 +84,10 @@ public class WebSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("https://localhost:3000");
         config.addAllowedOrigin("http://jong-10.shop");
+        config.addAllowedOrigin("https://jong-10.shop");
+        config.addAllowedOrigin("http://banibanipj.s3-website.ap-northeast-2.amazonaws.com/");
 
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 
