@@ -10,5 +10,5 @@ public interface RoomDetailRepository extends JpaRepository<RoomDetail, Long> {
 
     Optional<RoomDetail> findByPostNicknameAndLoginNickname(String postNickname, String loginNickname);
 
-    Optional<List<RoomDetail>> findAllByLoginNickname(String loginNickname);
+    List<RoomDetail> findAllByLoginNickname(String loginNickname);
 }

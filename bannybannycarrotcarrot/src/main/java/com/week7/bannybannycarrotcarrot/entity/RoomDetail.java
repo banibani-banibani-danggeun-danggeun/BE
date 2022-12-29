@@ -27,5 +27,6 @@ public class RoomDetail extends TimeStamped {
         this.postNickname = postNickname;
         this.loginNickname = loginNickname;
         this.room = room;
+        this.room.getRoomDetails().add(this);
     }
 }
