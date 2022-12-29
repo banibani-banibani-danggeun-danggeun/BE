@@ -4,7 +4,7 @@
 > **당근 마켓 클론 코딩 프로젝트**  
 > 바니바니 당근마켓. 중고 거래, 이웃과 함께해요. 가깝고 따뜻한 당신의 근처를 만들어요.
 
-* [[Notion: 항해언니 프로젝트 정보]](https://royal-storm-069.notion.site/6-21181e915241465c92495075706dbe3c)
+* [[Notion: 바니바니당근 프로젝트 정보]](https://royal-storm-069.notion.site/6-21181e915241465c92495075706dbe3c)
 * [[프로젝트 시연영상 보러가기]](https://youtu.be/gjkK6H2Z5v4)
 * [[Front-End Repository]](https://github.com/banibani-banibani-danggeun-danggeun/FE_new)  
   
