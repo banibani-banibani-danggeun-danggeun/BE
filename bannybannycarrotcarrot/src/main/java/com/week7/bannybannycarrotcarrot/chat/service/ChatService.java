@@ -7,6 +7,7 @@ import com.week7.bannybannycarrotcarrot.repository.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class ChatService {
     private final ChatRepository chatRepository;
 
     public void save(ChatMessage message) {
-        Chat chat = new Chat(message);
+        LocalDateTime createAt = LocalDateTime.now();
+        Chat chat = new Chat(message, createAt);
         chatRepository.save(chat);
     }
 

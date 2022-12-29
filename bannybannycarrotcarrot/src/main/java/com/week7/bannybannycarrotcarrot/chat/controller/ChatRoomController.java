@@ -5,10 +5,9 @@ import com.week7.bannybannycarrotcarrot.chat.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,6 +19,11 @@ public class ChatRoomController {
     // 채팅방 생성
     @PostMapping("/room")
     public ChatRoom createRoom(@RequestParam Long postId, @AuthenticationPrincipal UserDetails userDetails) {
-        return chatRoomService.createChatRoom(postId, userDetails.getUsername());
+        return chatRoomService.createChatRoom(postId, Long.parseLong(userDetails.getUsername()));
+    }
+
+    @GetMapping("/rooms/{loginNickname}")
+    public List<ChatRoom> getRoomList(@PathVariable String loginNickname) {
+        return chatRoomService.getChatRoom(loginNickname);
     }
 }
