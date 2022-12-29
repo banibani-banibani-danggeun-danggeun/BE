@@ -22,7 +22,8 @@
 #### `Backend`
 <a href="https://github.com/ksanacloud" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=김규민 &color=08CE5D&style=for-the-badge&>"/></a>
 <a href="https://github.com/EunheaSong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=유종열 &color=08CE5D&style=for-the-badge&>"/></a>
-<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=심현웅 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=이승열 &color=08CE5D&style=for-the-badge&>"/></a>
+<a href="https://github.com/hyun-woong" target="_blank"><img height="40"  src="https://img.shields.io/static/v1?label=Spring&message=최재하 &color=08CE5D&style=for-the-badge&>"/></a>
   
 ## 🛠️ 기술 스택
   
