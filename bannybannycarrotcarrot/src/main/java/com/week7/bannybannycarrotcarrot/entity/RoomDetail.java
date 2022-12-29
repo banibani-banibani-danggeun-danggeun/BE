@@ -1,11 +1,9 @@
 package com.week7.bannybannycarrotcarrot.entity;
 
-import jdk.jfr.Timespan;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 @NoArgsConstructor
@@ -20,10 +18,14 @@ public class RoomDetail extends TimeStamped {
     private Room room;
 
     @Column(nullable = false)
-    private String nickname;
+    private String postNickname;
 
-    public RoomDetail(String nickname, Room room) {
-        this.nickname = nickname;
+    @Column(nullable = false)
+    private String loginNickname;
+
+    public RoomDetail(String postNickname, String loginNickname, Room room) {
+        this.postNickname = postNickname;
+        this.loginNickname = loginNickname;
         this.room = room;
     }
 }

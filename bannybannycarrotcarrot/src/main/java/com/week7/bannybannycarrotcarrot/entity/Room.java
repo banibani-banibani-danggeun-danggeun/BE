@@ -24,7 +24,6 @@ public class Room extends TimeStamped {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoomDetail> roomDetails = new ArrayList<>();
 
-    @Builder
     public Room(Post post) {
         this.post = post;
     }
