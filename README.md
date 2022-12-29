@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=바니바니 당근 마켓 클론코딩 프로젝트&fontSize=90" />
+![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=🥕바니%20바니%20당근%20마켓&fontSize=50&fontAlign=50&color=gradient&animation=fadeIn&fontColor=F49F5B)
 
 # 바니바니 당근 마켓(Back-End) readME 수정중
 > **당근 마켓 클론 코딩 프로젝트**  
