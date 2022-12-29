@@ -32,9 +32,6 @@ public class Post extends TimeStamped{
     @Column
     private String nickname;
 
-/*    @OneToMany(mappedBy = "post")
-    private List<Room> rooms = new ArrayList<>();*/
-
     public Post(PostDto.PostRequestDto requestDto, String nickname) {
         this.title = requestDto.title();
         this.content = requestDto.content();

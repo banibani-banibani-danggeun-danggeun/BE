@@ -19,7 +19,7 @@ public class ChatRoomController {
     // 채팅방 생성
     @PostMapping("/room")
     public ChatRoom createRoom(@RequestParam Long postId, @AuthenticationPrincipal UserDetails userDetails) {
-        return chatRoomService.createChatRoom(postId, userDetails.getUsername());
+        return chatRoomService.createChatRoom(postId, Long.parseLong(userDetails.getUsername()));
     }
 
     @GetMapping("/rooms/{loginNickname}")
