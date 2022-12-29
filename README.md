@@ -43,7 +43,7 @@
 ![와이어프레임](https://cdn.discordapp.com/attachments/1037267111585792020/1055867403344543754/IMB_XZKGyK.gif)
 
 ## 🗺 ERD
-<img width="800" alt="메인페이지2" src="https://files.slack.com/files-pri/T01L2TNGW3T-F04H0CJ7M5J/____________erd.png">  
+<img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/bxKbco/btrUWSToS9W/vQC2owz9mExVJ6mb75lXpK/img.png">  
 
 ## 🧩아키텍쳐
 <img width="800" alt="메인페이지2" src="https://blog.kakaocdn.net/dn/bOCbtg/btrUneCW2D2/BZyYOomTIzYOHSm4bmkEK1/img.png">  
