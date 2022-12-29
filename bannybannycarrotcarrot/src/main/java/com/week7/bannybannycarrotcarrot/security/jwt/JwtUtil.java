@@ -1,9 +1,12 @@
 package com.week7.bannybannycarrotcarrot.security.jwt;
 
+import com.week7.bannybannycarrotcarrot.dto.TokenDto;
+import com.week7.bannybannycarrotcarrot.entity.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,6 +36,13 @@ public class JwtUtil {
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 60; // 60분
 
     private final Key key;
+
+    private static final long ACCESS_TIME = 1000L * 60 * 60 * 24;
+    private static final long REFRESH_TIME = 1000L * 60 * 60 * 24 * 7;
+    public static final String ACCESS_TOKEN = "Access_Token";
+    public static final String REFRESH_TOKEN = "Refresh_Token";
+    private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
 
     public JwtUtil(@Value("${jwt.secret}") String secretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
@@ -109,4 +119,36 @@ public class JwtUtil {
             return e.getClaims();
         }
     }
+
+    public TokenDto createAllToken(String email) {
+        return new TokenDto(createToken(email, "Access"), createToken(email, "Refresh"));
+    }
+
+
+    public String createToken(String email, String type) {
+        Date date = new Date();
+
+        Long time = type.equals("Access") ? ACCESS_TIME : REFRESH_TIME;
+
+        return Jwts.builder()
+                .setSubject(email)
+                .setExpiration(new Date(date.getTime() + time))
+                .setIssuedAt(date)
+                .signWith(key, signatureAlgorithm)
+                .compact();
+
+    }
+
+    public String createToken(Long id)  {
+        //access Token 만료 시간 = 현재 시간 + 제한 시간
+        Date accessTokenExpiresIn = new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRE_TIME);
+
+          return TOKEN_PREFIX +
+            Jwts.builder()
+                    .setSubject(String.valueOf(id))
+                    .claim(AUTHORITY_KEY, UserRole.USER)
+                    .setExpiration(accessTokenExpiresIn)
+                    .signWith(key, SignatureAlgorithm.HS512)
+                    .compact();
+}
 }
