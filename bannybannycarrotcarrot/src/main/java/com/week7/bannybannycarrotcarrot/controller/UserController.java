@@ -38,6 +38,11 @@ public class UserController {
         return userService.idCheck(username);
     }
 
+    @GetMapping("nicknamecheck/{nickname}")
+    public MsgDto.ResponseDto nicknameCheck(@PathVariable String nickname) {
+        return userService.nicknameCheck(nickname);
+    }
+
     // kakao OAuth 를 위해 추가 -종열
     @GetMapping("/kakao/callback")
     public MsgDto.DataResponseDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {

@@ -82,4 +82,11 @@ public class UserService {
         }
         return new MsgDto.ResponseDto(UserStatusCode.AVAILABLE_USERNAME);
     }
+
+    public MsgDto.ResponseDto nicknameCheck(String nickname) {
+        if (userRepository.existsByNickname(nickname)){
+            throw new RestApiException(UserStatusCode.OVERLAPPED_NICKNAME);
+        }
+        return new MsgDto.ResponseDto(UserStatusCode.AVAILABLE_NICKNAME);
+    }
 }
